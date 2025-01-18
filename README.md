@@ -16,10 +16,11 @@ A realistic investment simulator that allows users to practice trading stocks in
 
 1. Clone or download this repository
 2. Get a Finnhub API key from https://finnhub.io/
-3. Open index.html in a modern web browser
-4. Enter your API key in the settings panel
-5. Configure your initial capital and preferences
-6. Start trading!
+3. Set up an HTTPS server either locally or with a service like Render
+4. Copy this repository's files (according to the file structure below) into the server and open it at index.html
+5. Enter your API key in the settings panel
+6. Configure your initial capital and preferences
+7. Start trading!
 
 ## File Structure
 ```
