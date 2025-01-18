@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.finnhub.io https://*.plot.ly 'unsafe-inline' 'unsafe-eval';">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Investment Simulator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+<body>
+  <div class="settings-sidebar" id="settings-panel">
+    <h2>Settings</h2>
+    <div class="settings-form">
+      <label for="api-key">Finnhub API Key:</label>
+      <input type="text" id="api-key" placeholder="Enter your API key">
+      <button id="test-api-key">Test API Key</button>
+      
+      <label for="initial-capital">Initial Capital ($):</label>
+      <input type="number" id="initial-capital" value="10000" min="1000">
+      
+      <label for="update-frequency">Price Update Frequency (minutes):</label>
+      <input type="number" id="update-frequency" value="1" min="1" max="60" step="1">
+      <div class="frequency-note">Minimum: 1 minute, Maximum: 60 minutes</div>
+      
+      <label for="currency-select">Display Currency:</label>
+      <select id="currency-select">
+        <option value="USD">USD</option>
+        <option value="CAD">CAD</option>
+      </select>
+      
+      <button id="save-settings">Save Settings</button>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <div class="portfolio-summary">
+      <h2>Portfolio Value: $<span id="total-value">10000.00</span></h2>
+      <h3>Cash Available: $<span id="cash-balance">10000.00</span></h3>
+      <div class="performance">
+        <span>Daily Change Rate: <span id="daily-change">0.00%</span></span>
+        <span>Total Return: <span id="total-return">0.00%</span></span>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div id="portfolio-chart"></div>
+      <div id="allocation-chart"></div>
+    </div>
+
+    <div class="trading-panel">
+      <div class="stock-categories">
+        <div class="category growth-stocks">
+          <h3>Growth Stocks</h3>
+          <div class="stock-list" id="growth-stocks"></div>
+        </div>
+        <div class="category risky-stocks">
+          <h3>Risky Stocks</h3>
+          <div class="stock-list" id="risky-stocks"></div>
+        </div>
+        <div class="category stable-stocks">
+          <h3>Stable Stocks</h3>
+          <div class="stock-list" id="stable-stocks"></div>
+        </div>
+      </div>
+
+      <div class="trade-form">
+        <h3>Place Trade</h3>
+        <select id="stock-select">
+          <option value="">Select Stock</option>
+        </select>
+        
+        <div class="trade-type">
+          <label>Trade Type:</label>
+          <select id="trade-type">
+            <option value="shares">By Shares</option>
+            <option value="amount">By Amount ($)</option>
+          </select>
+        </div>
+        
+        <div id="shares-input">
+          <input type="number" id="quantity" placeholder="Number of shares" min="1" step="1">
+        </div>
+        
+        <div id="amount-input" style="display:none;">
+          <input type="number" id="amount" placeholder="Amount in USD" min="0.01" step="0.01">
+        </div>
+        
+        <div class="trade-buttons">
+          <button id="buy-btn">Buy</button>
+          <button id="sell-btn">Sell</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="holdings">
+      <h3>Current Holdings</h3>
+      <div id="holdings-list"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
